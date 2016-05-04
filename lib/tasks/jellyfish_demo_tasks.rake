@@ -91,45 +91,6 @@ namespace :setup do
       end]
     end
 
-    # Add Order and Services
-    services = sample_data('demo_services') do |data|
-      @setup_price = 0
-      @hourly_price = 0
-      @monthly_price = 0
-      order_staff = staff.assoc(data.delete('staff')).last
-      order_project = projects.assoc(data.delete('project')).last
-      order_products = data.delete 'products'
-      # Create services from products
-      services = order_products.map do |order_product|
-        product = products.assoc(order_product.delete('product')).last
-        service_outputs = order_product.delete('service_outputs')
-        order_product['uuid'] = SecureRandom.uuid
-        [order_product.delete('_assoc'), Service.create(order_product).tap do |service|
-          puts "  #{service['name']}"
-          service.service_outputs.create(service_outputs) unless service_outputs.nil?
-          service.product_id = product.id
-          @setup_price += product.setup_price
-          @hourly_price += product.hourly_price
-          @monthly_price += product.monthly_price
-        end]
-      end
-      # Create Order
-      order_params = {
-        staff: order_staff,
-        project: order_project,
-        setup_price: @setup_price,
-        hourly_price: @hourly_price,
-        monthly_price: @monthly_price,
-        status: Order.statuses['completed']
-      }
-      order = Order.create(order_params)
-      # Save created Services with Order ID
-      services.map do |service|
-        service.last.order_id = order.id
-        service.last.save
-      end
-    end
-
     # Add wizard questions
     sample_data 'demo_wizard_questions' do |data|
       answers = data.delete 'answers'
