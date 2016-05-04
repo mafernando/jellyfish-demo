@@ -1,17 +1,13 @@
 ---
+- _assoc: router
+  name: Routers
+  description: Routers
+  tag_list: [router]
 - _assoc: compute
   name: Compute
   description: Compute and server resources
   tag_list: [server]
-- _assoc: storage
-  name: Storage
-  description: Media and CDN delivery
-  tag_list: [storage, cdn]
 - _assoc: database
   name: Database
   description: Databases
   tag_list: [database]
-- _assoc: staff
-  name: Staff
-  description: Personnel and staffing
-  tag_list: [staff]
