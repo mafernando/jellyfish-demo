@@ -1,35 +1,5 @@
 ---
 ## Servers
-- _assoc: ec2
-  name: EC2
-  description: An AWS instance running Amazon Linux
-  img: products/aws_ec2.png
-  product_type: 11ca0e0e-617d-45f3-b10a-acf42d5e6ecc
-  provider: demo
-  active: true
-  setup_price: 10.99
-  monthly_price: 0
-  hourly_price: 0.23
-  tag_list: [server, aws, public, medium, compute, ec2]
-  answers:
-    - name: operating_system
-      value: Amazon Linux
-      value_type: string
-    - name: instance_size
-      value: t2.medium
-      value_type: string
-    - name: cpus
-      value: 2
-      value_type: integer
-    - name: memory
-      value: 4
-      value_type: integer
-    - name: disk_size
-      value: 100
-      value_type: integer
-    - name: environment
-      value: Production
-      value_type: string
 - _assoc: rhel
   name: RHEL 7
   description: A server running RHEL
