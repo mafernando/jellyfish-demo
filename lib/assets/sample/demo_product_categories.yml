@@ -2,7 +2,7 @@
 - _assoc: compute
   name: Compute
   description: Compute and server resources
-  tag_list: [server]
+  tag_list: [compute]
 - _assoc: storage
   name: Storage
   description: Media and CDN delivery
